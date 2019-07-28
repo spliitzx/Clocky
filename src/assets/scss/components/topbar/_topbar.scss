@@ -12,16 +12,27 @@
         height: 50px;
     }
 
+    &__buttons {
+        display: flex;
+        flex-direction: row;
+        margin-left: auto;
+    }
+
     &__button {
         display: flex;
-        justify-content: center;
         align-items: center;
-        margin-left: auto;
+        justify-content: center;
+        margin-left: 10px;
         width: 25px;
         height: 25px;
         border-radius: 100%;
-        background-color: $danger;
+        background-color: $light-grey;
         color: $white;
         cursor: pointer;
+        font-size: 12px;
+
+        &--is-red {
+            background-color: $danger;
+        }
     }
 }
