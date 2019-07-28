@@ -8,11 +8,13 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { IndexComponent } from './components/index/index.component';
+import { TopbarComponent } from './components/topbar/topbar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     IndexComponent,
+    TopbarComponent,
   ],
   imports: [
     BrowserModule,

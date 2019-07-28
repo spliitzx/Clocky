@@ -1,0 +1,27 @@
+.topbar {
+    height: 50px;
+    background-color: $primary;
+    -webkit-app-region: drag;
+
+    &__container {
+        margin-left: 10px;
+        margin-right: 10px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        height: 50px;
+    }
+
+    &__button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-left: auto;
+        width: 25px;
+        height: 25px;
+        border-radius: 100%;
+        background-color: $danger;
+        color: $white;
+        cursor: pointer;
+    }
+}

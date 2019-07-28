@@ -18,6 +18,7 @@ function createWindow() {
         webPreferences: {
             nodeIntegration: true,
         },
+        frame: false
     });
     if (serve) {
         require('electron-reload')(__dirname, {
