@@ -1,0 +1,33 @@
+button {
+    border: none;
+    background-color: $primary;
+    height: 6vh;
+    width: 15vw;
+    border-radius: 35px;
+    font-weight: 600;
+    transition: linear 0.2s;
+
+    &:focus {
+        outline: none;
+    }
+
+    &:hover {
+        background-color: lighten($primary, 10%);
+    }
+}
+
+.button {
+    &--is-green {
+        background-color: $success;
+        &:hover {
+            background-color: lighten($success, 10%);
+        }
+    }
+
+    &--is-red {
+        background-color: $danger;
+        &:hover {
+            background-color: lighten($danger, 10%);
+        }
+    }
+}
