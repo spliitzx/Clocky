@@ -2,14 +2,14 @@
 
 <div class="timer">
     <div class="timer__container">
-        <span class="timer__time">00:00:00</span>
+        <span class="timer__time">{{ time }}</span>
         <div class="timer-separator"></div>
 
         <div class="timer__form">
             <div class="timer__form--column" style="margin-right:1vw;">
                 <label for="time" class="label">
                     Time
-                    <input id="time" type="text" class="timer__form--input" />
+                    <input id="time" [(ngModel)]="timeInput" type="text" class="timer__form--input" />
                 </label>
                 <label for="format" class="label">
                     Format
@@ -28,6 +28,6 @@
             </div>
         </div>
 
-        <button class="button--is-green">Save Changes</button>
+        <button class="button--is-green" (click)="save()" [disabled]="saveLoading">{{ saveLoading ? 'Saved!' : 'Save Changes' }}</button>
     </div>
 </div>
