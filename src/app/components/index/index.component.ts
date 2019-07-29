@@ -33,12 +33,14 @@ export class IndexComponent implements OnInit {
     const formatCache = localStorage.getItem('format') || 'HH:mm:ss';
     const seconds = localStorage.getItem('seconds') || '0';
     const pathCache = localStorage.getItem('path');
+    const messageCache = localStorage.getItem('completionMessage');
 
     this.seconds = (!isNaN(Number.parseInt(seconds, 0x0))) ? Math.round(Number.parseInt(seconds, 0x0)) : 0;
-    const formatted = this.formatTime(formatCache);
+    const formatted: string = this.formatTime(formatCache);
     this.format = formatCache;
     this.time = formatted;
-    this.timeInput = formatted;
+    this.timeInput = formatted.replace(/ /g, '');
+    this.completionMessage = messageCache || null;
     if (pathCache) { this.folderPath = pathCache; }
   }
 
@@ -67,6 +69,9 @@ export class IndexComponent implements OnInit {
 
     localStorage.setItem('format', this.format);
     localStorage.setItem('seconds', this.seconds.toString());
+    if (this.completionMessage) {
+      localStorage.setItem('completionMessage', this.completionMessage);
+    }
 
     setTimeout(() => {
       this.saveLoading = false;
