@@ -1,6 +1,6 @@
 .timer {
-    margin-left: 400px;
-    margin-right: 400px;
+    margin-left: 40vw;
+    margin-right: 40vw;
     margin-top: 20vh;
 
     &__container {
@@ -12,6 +12,16 @@
     &__time {
         font-weight: 500;
         font-size: 10vw;
+    }
+
+    &__form {
+        margin-left: 60vw;
+        margin-right: 60vw;
+        display: flex;
+
+        &--column {
+            display: block;
+        }
     }
 
     &-separator {
