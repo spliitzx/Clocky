@@ -9,7 +9,7 @@
             <div class="timer__form--row">
                 <label for="time" class="label timer__form--row-left">
                     Time
-                    <input id="time" [(ngModel)]="timeInput" type="text" class="timer__form--input" />
+                    <input id="time" [(ngModel)]="timeInput" maxlength="8" (ngModelChange)="typeTime()" type="text" class="timer__form--input" />
                 </label>
                 <label for="output" class="label">
                     Output Folder

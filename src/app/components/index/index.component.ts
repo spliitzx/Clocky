@@ -112,4 +112,11 @@ export class IndexComponent implements OnInit {
     );
   }
 
+  typeTime() {
+    const length = this.timeInput.length;
+    if ([2, 5].indexOf(length) + 1) {
+      this.timeInput += ':';
+    }
+  }
+
 }
