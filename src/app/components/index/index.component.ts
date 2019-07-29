@@ -19,13 +19,25 @@ export class IndexComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.time = '00:00:00';
+    const formatCache = localStorage.getItem('format') || 'HH:mm:ss';
+    const seconds = localStorage.getItem('seconds') || '0';
+
+    this.seconds = (!isNaN(Number.parseInt(seconds, 0x0))) ? Math.round(Number.parseInt(seconds, 0x0)) : 0;
+    const formatted = this.formatTime(formatCache);
+    this.format = formatCache;
+    this.time = formatted;
+    this.timeInput = formatted;
   }
 
   save() {
     this.saveLoading = true;
 
     this.seconds = moment.duration(this.timeInput).asSeconds();
+    const format = this.format;
+    this.time = this.formatTime(format);
+
+    localStorage.setItem('format', this.format);
+    localStorage.setItem('seconds', this.seconds.toString());
 
     setTimeout(() => {
       this.saveLoading = false;
@@ -41,9 +53,10 @@ export class IndexComponent implements OnInit {
 
     if (this.seconds) {
       this.timeInterval = setInterval(() => {
-        this.time = this.formatTime();
+        this.time = this.formatTime(this.format);
         if (this.seconds > 0) {
           this.seconds--;
+          localStorage.setItem('seconds', this.seconds.toString());
         } else {
           this.stopTimer();
         }
@@ -67,9 +80,9 @@ export class IndexComponent implements OnInit {
     }
   }
 
-  formatTime() {
+  formatTime(format: string) {
     const seconds = this.seconds;
-    return moment.utc(seconds * 1000).format('HH:mm:ss');
+    return moment.utc(seconds * 1000).format(format || 'HH:mm:ss');
   }
 
 }
