@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 
 // Global Providers
 import { ElectronService } from '../providers/electron.service';
+import { FileService } from '../providers/dir.service';
 
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
@@ -26,7 +27,10 @@ import { TopbarComponent } from './components/topbar/topbar.component';
     AppRoutingModule,
     FormsModule
   ],
-  providers: [ElectronService],
+  providers: [
+    ElectronService,
+    FileService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

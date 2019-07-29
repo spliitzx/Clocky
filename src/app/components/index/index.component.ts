@@ -1,5 +1,6 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { ElectronService } from '../../../providers/electron.service';
+import { FileService } from '../../../providers/dir.service';
 const moment = require('moment');
 
 @Component({
@@ -19,7 +20,7 @@ export class IndexComponent implements OnInit {
 
   public saveLoading = false;
 
-  constructor(private electronService: ElectronService, private zone: NgZone) { }
+  constructor(private electronService: ElectronService, private zone: NgZone, private fileService: FileService) { }
 
   ngOnInit() {
     const formatCache = localStorage.getItem('format') || 'HH:mm:ss';
@@ -61,10 +62,12 @@ export class IndexComponent implements OnInit {
         if (this.seconds > 0) {
           this.seconds--;
           localStorage.setItem('seconds', this.seconds.toString());
+          this.fileService.write(this.folderPath, this.time);
         } else {
           this.stopTimer();
           if (this.completionMessage) {
             this.time = this.completionMessage;
+            this.fileService.write(this.folderPath, this.completionMessage);
           }
         }
       }, 1000);
