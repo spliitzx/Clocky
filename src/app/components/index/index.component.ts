@@ -87,6 +87,7 @@ export class IndexComponent implements OnInit {
     this.timeInterval = undefined;
     this.seconds = 0;
     this.time = this.formatTime(this.format);
+    this.fileService.write(this.folderPath, this.time);
     this.isPaused = false;
   }
 
