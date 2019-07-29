@@ -133,4 +133,11 @@ export class IndexComponent implements OnInit {
     }
   }
 
+  get imageUrl() {
+    const pause = '/assets/img/icon_pause.png';
+    const play = '/assets/img/icon_play.png';
+
+    return this.isPaused ? pause : play;
+  }
+
 }
