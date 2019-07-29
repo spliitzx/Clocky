@@ -1,14 +1,23 @@
 .timer {
+    margin-left: 400px;
+    margin-right: 400px;
+    margin-top: 20vh;
+
     &__container {
-        margin-left: 400px;
-        margin-right: 400px;
-        margin-top: 20vh;
         display: flex;
-        justify-content: center;
+        flex-direction: column;
+        align-items: center;
     }
 
     &__time {
         font-weight: 500;
         font-size: 10vw;
+    }
+
+    &-separator {
+        width: 30vw;
+        height: 0.5vh;
+        background-color: $primary;
+        margin-bottom: 5vh;
     }
 }
