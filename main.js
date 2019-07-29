@@ -111,14 +111,23 @@ catch (e) {
 }
 function checkForUpdates() {
     return __awaiter(this, void 0, void 0, function () {
+        var e_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     log.info('Checking for updates...');
-                    return [4 /*yield*/, autoUpdater.checkForUpdates()];
+                    _a.label = 1;
                 case 1:
+                    _a.trys.push([1, 3, , 4]);
+                    return [4 /*yield*/, autoUpdater.checkForUpdates()];
+                case 2:
                     _a.sent();
-                    return [2 /*return*/];
+                    return [3 /*break*/, 4];
+                case 3:
+                    e_1 = _a.sent();
+                    log.info(e_1);
+                    return [3 /*break*/, 4];
+                case 4: return [2 /*return*/];
             }
         });
     });
