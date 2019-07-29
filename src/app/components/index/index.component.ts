@@ -13,6 +13,7 @@ export class IndexComponent implements OnInit {
   // Inputs
   public timeInput: string;
   public format: string;
+  public completionMessage: string;
 
   public saveLoading = false;
 
@@ -59,6 +60,9 @@ export class IndexComponent implements OnInit {
           localStorage.setItem('seconds', this.seconds.toString());
         } else {
           this.stopTimer();
+          if (this.completionMessage) {
+            this.time = this.completionMessage;
+          }
         }
       }, 1000);
     }
@@ -75,13 +79,13 @@ export class IndexComponent implements OnInit {
     if (this.timeInterval) {
       clearInterval(this.timeInterval);
       this.timeInterval = undefined;
-      this.time = '00:00:00';
+      this.time = this.formatTime(this.format, 0);
       this.seconds = null;
     }
   }
 
-  formatTime(format: string) {
-    const seconds = this.seconds;
+  formatTime(format: string, customSeconds?: number) {
+    const seconds = customSeconds || this.seconds;
     return moment.utc(seconds * 1000).format(format || 'HH:mm:ss');
   }
 
