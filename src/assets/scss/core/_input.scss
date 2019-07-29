@@ -1,0 +1,27 @@
+input {
+    border: 1px solid $grey;
+    border-radius: 25px;
+    height: 4vh;
+    background-color: #0B0710;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    text-align: center;
+    font-weight: 300;
+    transition: linear 0.2s;
+
+    &:focus {
+        outline: none;
+        border: 1px solid lighten($grey, 20%);
+    }
+}
+
+::placeholder {
+    color: $grey;
+    font-weight: 500;
+}
+
+.label {
+    font-weight: 500;
+    font-size: 1vw;
+    color: $light-grey;
+}
