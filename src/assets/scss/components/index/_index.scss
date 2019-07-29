@@ -60,38 +60,50 @@
         &--item {
             width: 3vw;
             height: 3vw;
-            background-color: $success;
             border-radius: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
+            fill: $white;
+            transition: linear 0.1s;
 
             &-margin {
                 margin-bottom: 2vh;
             }
 
+            &--is-play {
+                background-color: $success;
+                &:hover {
+                    background-color: lighten($success, 10%);
+                }
+            }
+
             &--is-paused {
                 background-color: #958224;
+                &:hover {
+                    background-color: lighten(#958224, 10%);
+                }
             }
 
             &--is-stop {
                 background-color: $danger;
+                &:hover {
+                    background-color: lighten($danger, 10%);
+                }
             }
 
             &--pause {
-                width: 1.6vw;
-                filter: invert(100%) sepia(4%) saturate(7486%) hue-rotate(241deg) brightness(108%) contrast(97%);
+                width: 1.0vw;
             }
 
             &--play {
                 width: 1.2vw;
-                filter: invert(100%) sepia(4%) saturate(7486%) hue-rotate(241deg) brightness(108%) contrast(97%);
+                margin-left: 0.2vw;
             }
 
             &--stop {
-                width: 1.0vw;
-                filter: invert(100%) sepia(4%) saturate(7486%) hue-rotate(241deg) brightness(108%) contrast(97%);
+                width: 1.2vw;
             }
         }
     }

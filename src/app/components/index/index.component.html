@@ -5,8 +5,20 @@
         <div class="timer__time--container">
             <span class="timer__time">{{ time }}</span>
             <div class="timer__buttons">
-                <div class="timer__buttons--item timer__buttons--item-margin" [ngClass]="{'timer__buttons--item--is-paused': isPaused}" (click)="togglePause()"><img [ngClass]="{'timer__buttons--item--pause': isPaused, 'timer__buttons--item--play': !isPaused}" src="{{ imageUrl }}"></div>
-                <div class="timer__buttons--item timer__buttons--item--is-stop" (click)="stopTimer()"><img class="timer__buttons--item--stop" src="/assets/img/icon_stop.png"></div>
+                <div class="timer__buttons--item timer__buttons--item-margin" [ngClass]="{'timer__buttons--item--is-paused': isPaused, 'timer__buttons--item--is-play': !isPaused}" (click)="togglePause()">
+                    <svg *ngIf="!isPaused" class="timer__buttons--item--play" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24.76 33.545">
+                        <path id="play-button" d="M29.915,16.115,6.752.141A.8.8,0,0,0,5.5.8V32.746a.8.8,0,0,0,1.252.657L29.915,17.429a.8.8,0,0,0,0-1.315Z" transform="translate(-5.5 0)" fill="#fff"/>
+                    </svg>
+                    <svg *ngIf="isPaused" class="timer__buttons--item--pause" xmlns="http://www.w3.org/2000/svg" width="23.103" height="34.193" viewBox="0 0 23.103 34.193">
+                        <path id="Path_7" data-name="Path 7" d="M96.091,32.961a1.232,1.232,0,0,1-1.232,1.232H88.082a1.232,1.232,0,0,1-1.232-1.232V1.232A1.232,1.232,0,0,1,88.082,0h6.777a1.232,1.232,0,0,1,1.232,1.232Z" transform="translate(-86.85)"/>
+                        <path id="Path_8" data-name="Path 8" d="M313.219,32.961a1.232,1.232,0,0,1-1.232,1.232H305.21a1.232,1.232,0,0,1-1.232-1.232V1.232A1.232,1.232,0,0,1,305.21,0h6.777a1.232,1.232,0,0,1,1.232,1.232Z" transform="translate(-290.116)"/>
+                    </svg>
+                </div>
+                <div class="timer__buttons--item timer__buttons--item--is-stop" (click)="stopTimer()">
+                    <svg class="timer__buttons--item--stop" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25">
+                        <path id="stop" d="M32.839,0H.938A.938.938,0,0,0,0,.938v31.9a.938.938,0,0,0,.938.938h31.9a.938.938,0,0,0,.938-.938V.938A.938.938,0,0,0,32.839,0Z" fill="#fff"/>
+                    </svg>
+                </div>
             </div>
         </div>
         <div class="timer-separator"></div>
