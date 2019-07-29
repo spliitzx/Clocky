@@ -31,18 +31,18 @@
                 </label>
                 <label for="output" class="input-label">
                     Output Folder
-                    <button class="button__small timer__form--browse" (click)="browse()">Browse</button>
+                    <button class="button__small timer__form--browse" (click)="browse()" [disabled]="countdownRunning">Browse</button>
                     <div class="timer__form--browse-text">{{ folderPath || 'No path selected.' }}</div>
                 </label>
             </div>
             <div class="timer__form--row">
                 <label for="format" class="input-label timer__form--row-left">
                     Output Format
-                    <input id="format" [(ngModel)]="format" type="text" class="timer__form--input"  [ngClass]="{'input--has-error': errors.format}"/>
+                    <input id="format" [(ngModel)]="format" type="text" class="timer__form--input" maxlength="10"  [ngClass]="{'input--has-error': errors.format}"/>
                 </label>
                 <label for="message" class="input-label">
                     Completion Message
-                    <input id="message" [(ngModel)]="completionMessage" type="text" class="timer__form--input" placeholder="Done!"  [ngClass]="{'input--has-error': errors.message}"/>
+                    <input id="message" [(ngModel)]="completionMessage" type="text" class="timer__form--input" placeholder="Done!" maxlength="14" [ngClass]="{'input--has-error': errors.message}"/>
                 </label>
             </div>
         </div>

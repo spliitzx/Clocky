@@ -13,11 +13,12 @@ export class IndexComponent implements OnInit {
   private timeInterval: any;
   public folderPath: string = null;
   public isPaused = false;
-  public errors: object = {
+  public errors: any = {
     time: false,
     format: false,
     message: false
   };
+  public countdownRunning = false;
 
   // Inputs
   public timeInput: string;
@@ -42,12 +43,27 @@ export class IndexComponent implements OnInit {
   }
 
   save() {
+    for (const i in this.errors) {
+      if (this.errors[i]) {
+        this.errors[i] = false;
+      }
+    }
+
+    if (this.timeInput.length !== 8) { return this.errors.time = true; }
+    if (!this.format || this.format === null) { return this.errors.format = true; }
+    if (this.completionMessage && this.completionMessage.length > 13) { return this.errors.message = true; }
+    if (this.format && this.format.length > 10) { return this.errors.format = true; }
+    if (!this.checkIsValid(this.timeInput)) { return this.errors.time = true; }
+
     this.saveLoading = true;
 
     this.seconds = moment.duration(this.timeInput).asSeconds();
     let format = this.format;
     this.time = this.formatTime(format);
     format = undefined;
+    if (this.folderPath) {
+      this.fileService.write(this.folderPath, this.time);
+    }
 
     localStorage.setItem('format', this.format);
     localStorage.setItem('seconds', this.seconds.toString());
@@ -63,6 +79,7 @@ export class IndexComponent implements OnInit {
     }
 
     if (this.seconds) {
+      this.countdownRunning = true;
       this.timeInterval = setInterval(() => {
         this.time = this.formatTime(this.format);
         if (this.seconds > 0) {
@@ -82,6 +99,7 @@ export class IndexComponent implements OnInit {
 
   pauseTimer() {
     if (this.timeInterval) {
+      this.countdownRunning = false;
       clearInterval(this.timeInterval);
       this.timeInterval = undefined;
     }
@@ -90,6 +108,7 @@ export class IndexComponent implements OnInit {
   stopTimer() {
     clearInterval(this.timeInterval);
     this.timeInterval = undefined;
+    this.countdownRunning = false;
     this.seconds = 0;
     this.time = this.formatTime(this.format);
     this.fileService.write(this.folderPath, this.time);
@@ -143,6 +162,12 @@ export class IndexComponent implements OnInit {
     const play = '/assets/img/icon_play.png';
 
     return this.isPaused ? pause : play;
+  }
+
+  checkIsValid(time: string) {
+    const stripped = time.split(':').join('');
+    if (isNaN(Number(stripped))) { return false; }
+    return true;
   }
 
 }
