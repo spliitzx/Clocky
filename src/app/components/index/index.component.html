@@ -2,7 +2,13 @@
 
 <div class="timer">
     <div class="timer__container">
-        <span class="timer__time">{{ time }}</span>
+        <div class="timer__time--container">
+            <span class="timer__time">{{ time }}</span>
+            <div class="timer__buttons">
+                <div class="timer__buttons--item timer__buttons--item-margin" [ngClass]="{'timer__buttons--item--is-paused': isPaused}" (click)="togglePause()">{{ isPaused ? '||' : '>' }}</div>
+                <div class="timer__buttons--item timer__buttons--item--is-stop" (click)="stopTimer()">X</div>
+            </div>
+        </div>
         <div class="timer-separator"></div>
 
         <div class="timer__form">

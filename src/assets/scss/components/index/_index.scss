@@ -12,6 +12,11 @@
     &__time {
         font-weight: 500;
         font-size: 10vw;
+
+        &--container {
+            display: flex;
+            flex-direction: row;
+        }
     }
 
     &__form {
@@ -42,6 +47,37 @@
                 color: $grey;
                 margin-top: 1vh;
                 position: absolute;
+            }
+        }
+    }
+
+    &__buttons {
+        display: flex;
+        flex-direction: column;
+        margin-left: 2vh;
+        justify-content: center;
+
+        &--item {
+            width: 4vw;
+            height: 4vh;
+            background-color: $success;
+            border-radius: 35px;
+            //margin-bottom: 2vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+
+            &-margin {
+                margin-bottom: 2vh;
+            }
+
+            &--is-paused {
+                background-color: #958224;
+            }
+
+            &--is-stop {
+                background-color: $danger;
             }
         }
     }

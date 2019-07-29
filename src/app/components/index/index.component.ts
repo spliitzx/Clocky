@@ -12,6 +12,7 @@ export class IndexComponent implements OnInit {
   private seconds: number;
   private timeInterval: any;
   public folderPath: string = null;
+  public isPaused = false;
 
   // Inputs
   public timeInput: string;
@@ -49,8 +50,6 @@ export class IndexComponent implements OnInit {
     setTimeout(() => {
       this.saveLoading = false;
     }, 1500);
-
-    this.startTimer();
   }
 
   startTimer() {
@@ -84,12 +83,11 @@ export class IndexComponent implements OnInit {
   }
 
   stopTimer() {
-    if (this.timeInterval) {
-      clearInterval(this.timeInterval);
-      this.timeInterval = undefined;
-      this.time = this.formatTime(this.format, 0);
-      this.seconds = null;
-    }
+    clearInterval(this.timeInterval);
+    this.timeInterval = undefined;
+    this.seconds = 0;
+    this.time = this.formatTime(this.format);
+    this.isPaused = false;
   }
 
   formatTime(format: string, customSeconds?: number) {
@@ -120,6 +118,17 @@ export class IndexComponent implements OnInit {
     const length = this.timeInput.length;
     if ([2, 5].indexOf(length) + 1) {
       this.timeInput += ':';
+    }
+  }
+
+  togglePause() {
+    this.isPaused = !this.isPaused;
+
+    if (this.isPaused) {
+      if (this.seconds === 0) { return; }
+      this.startTimer();
+    } else {
+      this.pauseTimer();
     }
   }
 
