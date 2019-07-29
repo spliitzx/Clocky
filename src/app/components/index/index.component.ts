@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
+import { ElectronService } from '../../../providers/electron.service';
 const moment = require('moment');
 
 @Component({
@@ -9,6 +10,7 @@ export class IndexComponent implements OnInit {
   public time: string;
   private seconds: number;
   private timeInterval: any;
+  public folderPath: string = null;
 
   // Inputs
   public timeInput: string;
@@ -17,7 +19,7 @@ export class IndexComponent implements OnInit {
 
   public saveLoading = false;
 
-  constructor() { }
+  constructor(private electronService: ElectronService, private zone: NgZone) { }
 
   ngOnInit() {
     const formatCache = localStorage.getItem('format') || 'HH:mm:ss';
@@ -88,6 +90,23 @@ export class IndexComponent implements OnInit {
   formatTime(format: string, customSeconds?: number) {
     const seconds = customSeconds || this.seconds;
     return moment.utc(seconds * 1000).format(format || 'HH:mm:ss');
+  }
+
+  browse() {
+    this.electronService.remote.dialog.showOpenDialog(
+      {
+        properties: ['openDirectory']
+      },
+      paths => {
+        if (!paths || paths.length === 0) {
+          return;
+        }
+
+        this.zone.run(() => {
+          this.folderPath = paths[0] + '\\countdown.txt';
+        });
+      }
+    );
   }
 
 }

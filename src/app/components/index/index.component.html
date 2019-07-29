@@ -11,14 +11,14 @@
                     Time
                     <input id="time" [(ngModel)]="timeInput" type="text" class="timer__form--input" />
                 </label>
-                <label for="output" class="label timer__form--row-left">
+                <label for="output" class="label">
                     Output Folder
-                    <button class="button__small timer__form--browse">Browse</button>
-                    <div class="timer__form--browse-text">C:/Documents/Clocky/countdown.txt</div>
+                    <button class="button__small timer__form--browse" (click)="browse()">Browse</button>
+                    <div class="timer__form--browse-text">{{ folderPath || 'No path selected.' }}</div>
                 </label>
             </div>
             <div class="timer__form--row">
-                <label for="format" class="label">
+                <label for="format" class="label timer__form--row-left">
                     Output Format
                     <input id="format" [(ngModel)]="format" type="text" class="timer__form--input" />
                 </label>

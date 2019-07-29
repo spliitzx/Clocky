@@ -1,1 +1,2 @@
-<router-outlet></router-outlet>
+<router-outlet *ngIf="electronService.isElectron()"></router-outlet>
+<p *ngIf="!electronService.isElectron()"><strong>Fatal: </strong>This app can only be used with Electron.</p>
