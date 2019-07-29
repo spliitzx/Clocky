@@ -34,8 +34,9 @@ export class IndexComponent implements OnInit {
     this.saveLoading = true;
 
     this.seconds = moment.duration(this.timeInput).asSeconds();
-    const format = this.format;
+    let format = this.format;
     this.time = this.formatTime(format);
+    format = undefined;
 
     localStorage.setItem('format', this.format);
     localStorage.setItem('seconds', this.seconds.toString());
