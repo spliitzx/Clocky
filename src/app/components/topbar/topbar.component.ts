@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ElectronService } from '../../../providers/electron.service';
 
 @Component({
   selector: 'app-topbar',
@@ -6,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TopbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private electronService: ElectronService) { }
 
   ngOnInit() {
+  }
+
+  close() {
+    this.electronService.remote.getCurrentWindow().close();
+    this.electronService.remote.app.exit(0); // if not exit
   }
 
 }

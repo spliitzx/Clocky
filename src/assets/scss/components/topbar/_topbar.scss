@@ -31,9 +31,18 @@
         color: $white;
         cursor: pointer;
         font-size: 12px;
+        -webkit-app-region: no-drag;
 
         &--is-red {
-            background-color: $danger;
+            background-color: #e01c1c;
+        }
+
+        &--is-green {
+            background-color: #22bd3c;
+        }
+
+        &--is-yellow {
+            background-color: #cbce1b;
         }
     }
 }
