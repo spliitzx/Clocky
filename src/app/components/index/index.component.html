@@ -6,20 +6,21 @@
         <div class="timer-separator"></div>
 
         <div class="timer__form">
-            <div class="timer__form--column" style="margin-right:1vw;">
-                <label for="time" class="label">
+            <div class="timer__form--row">
+                <label for="time" class="label timer__form--row-left">
                     Time
                     <input id="time" [(ngModel)]="timeInput" type="text" class="timer__form--input" />
                 </label>
+                <label for="output" class="label timer__form--row-left">
+                    Output Folder
+                    <button class="button__small timer__form--browse">Browse</button>
+                    <div class="timer__form--browse-text">C:/Documents/Clocky/countdown.txt</div>
+                </label>
+            </div>
+            <div class="timer__form--row">
                 <label for="format" class="label">
                     Output Format
                     <input id="format" [(ngModel)]="format" type="text" class="timer__form--input" />
-                </label>
-            </div>
-            <div class="timer__form--column">
-                <label for="output" class="label">
-                    Output Folder
-                    <input id="output" type="text" class="timer__form--input" />
                 </label>
                 <label for="message" class="label">
                     Completion Message

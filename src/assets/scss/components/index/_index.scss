@@ -18,15 +18,30 @@
         margin-left: 60vw;
         margin-right: 60vw;
         margin-bottom: 10vh;
-        display: flex;
 
-        &--column {
-            display: block;
+        &--row {
+            display: flex;
+            flex-direction: row;
+
+            &-left {
+                margin-right: 1vw;
+            }
         }
 
         &--input {
             margin-bottom: 2vh;
             margin-top: 0.75vh;
+        }
+
+        
+        &--browse {
+            margin-top: 0.75vh;
+
+            &-text {
+                font-size: 0.75vw;
+                color: $grey;
+                margin-top: 1vh;
+            }
         }
     }
 
