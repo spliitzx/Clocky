@@ -25,24 +25,24 @@
 
         <div class="timer__form">
             <div class="timer__form--row">
-                <label for="time" class="label timer__form--row-left">
+                <label for="time" class="input-label timer__form--row-left">
                     Time
-                    <input id="time" [(ngModel)]="timeInput" maxlength="8" (ngModelChange)="typeTime()" type="text" class="timer__form--input" />
+                    <input id="time" [(ngModel)]="timeInput" maxlength="8" (ngModelChange)="typeTime()" type="text" class="timer__form--input" [ngClass]="{'input--has-error': errors.time}" />
                 </label>
-                <label for="output" class="label">
+                <label for="output" class="input-label">
                     Output Folder
                     <button class="button__small timer__form--browse" (click)="browse()">Browse</button>
                     <div class="timer__form--browse-text">{{ folderPath || 'No path selected.' }}</div>
                 </label>
             </div>
             <div class="timer__form--row">
-                <label for="format" class="label timer__form--row-left">
+                <label for="format" class="input-label timer__form--row-left">
                     Output Format
-                    <input id="format" [(ngModel)]="format" type="text" class="timer__form--input" />
+                    <input id="format" [(ngModel)]="format" type="text" class="timer__form--input"  [ngClass]="{'input--has-error': errors.format}"/>
                 </label>
-                <label for="message" class="label">
+                <label for="message" class="input-label">
                     Completion Message
-                    <input id="message" [(ngModel)]="completionMessage" type="text" class="timer__form--input" placeholder="Done!" />
+                    <input id="message" [(ngModel)]="completionMessage" type="text" class="timer__form--input" placeholder="Done!"  [ngClass]="{'input--has-error': errors.message}"/>
                 </label>
             </div>
         </div>

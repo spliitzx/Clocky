@@ -13,6 +13,11 @@ export class IndexComponent implements OnInit {
   private timeInterval: any;
   public folderPath: string = null;
   public isPaused = false;
+  public errors: object = {
+    time: false,
+    format: false,
+    message: false
+  };
 
   // Inputs
   public timeInput: string;

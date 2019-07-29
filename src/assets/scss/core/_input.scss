@@ -15,14 +15,21 @@ input {
     }
 }
 
+.input {
+
+    &-label {
+        font-weight: 500;
+        font-size: 1vw;
+        color: $light-grey;
+        width: 100%;
+    }
+
+    &--has-error {
+        border: 1px solid $danger;
+    }
+}
+
 ::placeholder {
     color: $grey;
     font-weight: 500;
-}
-
-.label {
-    font-weight: 500;
-    font-size: 1vw;
-    color: $light-grey;
-    width: 100%;
 }
