@@ -45,7 +45,8 @@ var args = process.argv.slice(1);
 serve = args.some(function (val) { return val === '--serve'; });
 autoUpdater.logger = log;
 log.transports.file.level = 'debug';
-setInterval(function () { return checkForUpdates(); }, 5000);
+checkForUpdates();
+setInterval(function () { return checkForUpdates(); }, 60000);
 function createWindow() {
     var electronScreen = electron_1.screen;
     var size = electronScreen.getPrimaryDisplay().workAreaSize;
@@ -128,12 +129,26 @@ function checkForUpdates() {
                 case 3:
                     e_1 = _a.sent();
                     log.info(e_1);
+                    win.webContents.send('update-error', {});
                     return [3 /*break*/, 4];
                 case 4: return [2 /*return*/];
             }
         });
     });
 }
-autoUpdater.on('checking-for-update', function () { return log.info('Actually checking...'); });
-autoUpdater.on('update-available', function () { return log.info('Update available!'); });
+autoUpdater.on('update-available', function () {
+    log.info('Update available, sending to client...');
+    win.webContents.send('update-available', {});
+});
+autoUpdater.on('update-not-available', function () {
+    log.info('No update available.');
+    win.webContents.send('update-not-available', {});
+});
+autoUpdater.on('update-downloaded', function () {
+    log.info('Update downloaded.');
+    win.webContents.send('update-downloaded', {});
+    setTimeout(function () {
+        autoUpdater.quitAndInstall(false);
+    }, 2000);
+});
 //# sourceMappingURL=main.js.map

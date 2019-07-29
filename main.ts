@@ -1,4 +1,4 @@
-import { app, BrowserWindow, screen } from 'electron';
+import { app, BrowserWindow, screen, ipcRenderer, ipcMain } from 'electron';
 import * as path from 'path';
 import * as url from 'url';
 const { autoUpdater } = require('electron-updater');
@@ -11,7 +11,8 @@ serve = args.some(val => val === '--serve');
 autoUpdater.logger = log;
 log.transports.file.level = 'debug';
 
-setInterval(() => checkForUpdates(), 5000);
+checkForUpdates();
+setInterval(() => checkForUpdates(), 60000);
 
 function createWindow() {
 
@@ -94,8 +95,24 @@ async function checkForUpdates() {
     await autoUpdater.checkForUpdates();
   } catch (e) {
     log.info(e);
+    win.webContents.send('update-error', {});
   }
 }
 
-autoUpdater.on('checking-for-update', () => log.info('Actually checking...'));
-autoUpdater.on('update-available', () => log.info('Update available!'));
+autoUpdater.on('update-available', () => {
+  log.info('Update available, sending to client...');
+  win.webContents.send('update-available', {});
+});
+
+autoUpdater.on('update-not-available', () => {
+  log.info('No update available.');
+  win.webContents.send('update-not-available', {});
+});
+
+autoUpdater.on('update-downloaded', () => {
+  log.info('Update downloaded.');
+  win.webContents.send('update-downloaded', {});
+  setTimeout(() => {
+    autoUpdater.quitAndInstall(false);
+  }, 2000);
+});
