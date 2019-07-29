@@ -1,10 +1,17 @@
 import { app, BrowserWindow, screen } from 'electron';
 import * as path from 'path';
 import * as url from 'url';
+const { autoUpdater } = require('electron-updater');
+const log = require('electron-log');
 
 let win, serve;
 const args = process.argv.slice(1);
 serve = args.some(val => val === '--serve');
+
+autoUpdater.logger = log;
+log.transports.file.level = 'debug';
+
+setInterval(() => checkForUpdates(), 5000);
 
 function createWindow() {
 
@@ -78,3 +85,15 @@ try {
   // Catch Error
   // throw e;
 }
+
+async function checkForUpdates() {
+  log.info('Checking for updates...');
+  try {
+    await autoUpdater.checkForUpdates();
+  } catch (e) {
+    log.info(e);
+  }
+}
+
+autoUpdater.on('checking-for-update', () => log.info('Actually checking...'));
+autoUpdater.on('update-available', () => log.info('Update available!'));
