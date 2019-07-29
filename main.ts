@@ -27,7 +27,9 @@ function createWindow() {
     webPreferences: {
       nodeIntegration: true,
     },
-    frame: false
+    frame: false,
+    minHeight: 900,
+    minWidth: 1700
   });
 
   if (serve) {
