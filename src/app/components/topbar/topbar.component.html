@@ -2,9 +2,21 @@
   <div class="topbar__container">
     <span class="topbar__title">Clocky</span>
     <div class="topbar__buttons">
-      <div class="topbar__button topbar__button--is-green">O</div>
-      <div class="topbar__button topbar__button--is-yellow">_</div>
-      <div class="topbar__button topbar__button--is-red" (click)="close()">X</div>
+      <div class="topbar__button topbar__button--is-green" (click)="maximize()">
+        <svg class="topbar__button--svg topbar__button--svg-maximize" data-name="topbar__button--svg" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg">
+          <path class="topbar__button--svg-icon" d="M 2 2 L 2 8.781589508056641 L 2 13 L 13 13 L 13 2 L 2 2 M 2 0 L 13 0 C 14.10457038879395 0 15 0.8954296112060547 15 2 L 15 13 C 15 14.10457038879395 14.10457038879395 15 13 15 L 2 15 C 0.8954296112060547 15 0 14.10457038879395 0 13 L 0 8.781589508056641 L 0 2 C 0 0.8954296112060547 0.8954296112060547 0 2 0 Z"/>
+        </svg>
+      </div>
+      <div class="topbar__button topbar__button--is-yellow" (click)="minimize()">
+        <svg class="topbar__button--svg topbar__button--svg-minimize" data-name="topbar__button--svg" viewBox="0 0 18 2" xmlns="http://www.w3.org/2000/svg">
+          <path class="topbar__button--svg-icon topbar__button--svg-icon--has-stroke" d="M0,0H18"></path>
+        </svg>
+      </div>
+      <div class="topbar__button topbar__button--is-red" (click)="close()">
+        <svg class="topbar__button--svg topbar__button--svg-close" data-name="topbar__button--svg" viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg">
+          <path class="topbar__button--svg-icon" d="M9.764,7.888,15.39,2.263A1.326,1.326,0,0,0,13.514.388L7.889,6.013,2.264.388A1.326,1.326,0,0,0,.389,2.263L6.014,7.888.389,13.514a1.326,1.326,0,1,0,1.875,1.875L7.889,9.763l5.625,5.625a1.326,1.326,0,1,0,1.875-1.875Z"/>
+        </svg>
+      </div>
     </div>
   </div>
 </div>

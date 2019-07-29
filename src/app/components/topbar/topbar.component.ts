@@ -17,4 +17,12 @@ export class TopbarComponent implements OnInit {
     this.electronService.remote.app.exit(0); // if not exit
   }
 
+  minimize() {
+    this.electronService.remote.getCurrentWindow().minimize();
+  }
+
+  maximize() {
+    this.electronService.remote.getCurrentWindow().maximize();
+  }
+
 }

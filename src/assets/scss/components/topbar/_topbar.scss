@@ -32,17 +32,55 @@
         cursor: pointer;
         font-size: 12px;
         -webkit-app-region: no-drag;
+        transition: linear 0.1s;
+
+        &--svg {
+            width: auto;
+
+            &-icon {
+                fill: $white;
+
+                &--has-stroke {
+                    stroke: $white;
+                    stroke-width: 2px;
+                }
+            }
+
+            &-maximize {
+                width: 12px;
+            }
+
+            &-minimize {
+                width: 15px;
+                height: 10px;
+                margin-top: 1px;
+            }
+
+            &-close {
+                width: 10px;
+                margin-right: 1px;
+            }
+        }
 
         &--is-red {
             background-color: #e01c1c;
+            &:hover {
+                background-color: darken(#e01c1c, 10%);
+            }
         }
 
         &--is-green {
             background-color: #22bd3c;
+            &:hover {
+                background-color: darken(#22bd3c, 10%);
+            }
         }
 
         &--is-yellow {
             background-color: #cbce1b;
+            &:hover {
+                background-color: darken(#cbce1b, 10%);
+            }
         }
     }
 }
