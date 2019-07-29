@@ -25,12 +25,14 @@ export class IndexComponent implements OnInit {
   ngOnInit() {
     const formatCache = localStorage.getItem('format') || 'HH:mm:ss';
     const seconds = localStorage.getItem('seconds') || '0';
+    const pathCache = localStorage.getItem('path');
 
     this.seconds = (!isNaN(Number.parseInt(seconds, 0x0))) ? Math.round(Number.parseInt(seconds, 0x0)) : 0;
     const formatted = this.formatTime(formatCache);
     this.format = formatCache;
     this.time = formatted;
     this.timeInput = formatted;
+    if (pathCache) { this.folderPath = pathCache; }
   }
 
   save() {
@@ -106,7 +108,9 @@ export class IndexComponent implements OnInit {
         }
 
         this.zone.run(() => {
-          this.folderPath = paths[0] + '\\countdown.txt';
+          const newPath = paths[0] + '\\countdown.txt';
+          this.folderPath = newPath;
+          localStorage.setItem('path', newPath);
         });
       }
     );
